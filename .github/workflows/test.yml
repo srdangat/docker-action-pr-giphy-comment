@@ -3,7 +3,7 @@ on:
     types: [opened]
 
 jobs:
-  test-giphy-action:
+  pr-action:
     runs-on: ubuntu-latest
     permissions:
       issues: write
@@ -15,6 +15,12 @@ jobs:
 
       - name: Invoke Giphy PR Comment Action
         uses: ./
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          giphy-api-key: ${{ secrets.GIPHY_API_KEY }}
+
+      - name: Post JavaScript Action PR Comment
+        uses: srdangat/js-action-pr-giphy-comment@v1.0.0-alpha
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           giphy-api-key: ${{ secrets.GIPHY_API_KEY }}
